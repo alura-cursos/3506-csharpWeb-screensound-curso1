@@ -2,7 +2,7 @@
 
 internal class Artista 
 {
-    private List<Musica> musicas = new List<Musica>();
+    private List<Musica> musicas = [];
 
     public Artista(string nome, string bio)
     {

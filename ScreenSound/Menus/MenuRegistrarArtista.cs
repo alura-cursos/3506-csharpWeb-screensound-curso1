@@ -15,7 +15,6 @@ internal class MenuRegistrarArtista : Menu
         Artista artista = new Artista(nomeDoArtista, bioDoArtista);
         artistasRegistrados.Add(nomeDoArtista, artista);
         Console.WriteLine($"O artista {nomeDoArtista} foi registrado com sucesso!");
-        Console.WriteLine("Aguarde");
         Thread.Sleep(4000);
         Console.Clear();
     }

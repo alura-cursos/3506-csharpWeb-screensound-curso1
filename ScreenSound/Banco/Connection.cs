@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using ScreenSound.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,13 @@ namespace ScreenSound.Banco
         public SqlConnection ObterConexao ()
         {
             return new SqlConnection (connectionString);
+        }
+
+        public IEnumerable<Artista> Listar()
+        {
+            var lista = new List<Artista>();
+            using var connection = ObterConexao();
+            connection.Open ();
         }
     }
 }

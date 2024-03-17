@@ -35,7 +35,9 @@ namespace ScreenSound.Banco
                 string nomeArtista = Convert.ToString(dataReader["Nome"]);
                 string bioArtista = Convert.ToString(dataReader["Bio"]);
                 int idArtista = Convert.ToInt32(dataReader["ID"]);
+
                 Artista artista = new(nomeArtista, bioArtista) { Id = idArtista };
+                lista.Add(artista);
         }
     }
 }

@@ -24,6 +24,10 @@ namespace ScreenSound.Banco
             var lista = new List<Artista>();
             using var connection = ObterConexao();
             connection.Open ();
+
+            string sql = "SELECT * FROM Artistas";
+
+            SqlCommand command = new SqlCommand (sql, connection);
         }
     }
 }

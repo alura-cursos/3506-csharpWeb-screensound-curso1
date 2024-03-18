@@ -32,7 +32,7 @@ namespace ScreenSound.Banco
 
             return lista;
         }
-        public void Adicionar(Artista artista)
+      /*  public void Adicionar(Artista artista)
         {
             using var connection = new ScreenSoundContext().ObterConexao();
             connection.Open();
@@ -44,7 +44,7 @@ namespace ScreenSound.Banco
             command.Parameters.AddWithValue("@bio", artista.Bio);
             int retorno = command.ExecuteNonQuery();
             Console.WriteLine($"Linhas afetadas {retorno}");
-        }
+        }*/
         //public void Atualizar(Artista artista )
         //{
         //    using var connection = new ScreenSoundContext().ObterConexao();

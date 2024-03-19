@@ -7,8 +7,9 @@ try
     var context = new ScreenSoundContext();
     var artistaDAL = new ArtistaDAl(context);
 
-    artistaDAL.Adicionar(new Artista("Foo Fighters", "Foo Fighters é uma banda de rock alternativo americana formada por Dave Grohl em 1995."));
+    var novoArtista = new Artista("Foo Fighters", "Foo Fighters é uma banda de rock alternativo americana formada por Dave Grohl em 1995.");
 
+    artistaDAL.Adicionar(novoArtista);
     var listaArtistas = artistaDAL.Listar();
 
     foreach ( var artist in listaArtistas )

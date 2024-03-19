@@ -17,19 +17,12 @@ namespace ScreenSound.Banco
            
             return context.Artistas.ToList();
         }
-      /*  public void Adicionar(Artista artista)
+        public void Adicionar(Artista artista)
         {
-            using var connection = new ScreenSoundContext().ObterConexao();
-            connection.Open();
-            string sql = "INSERT INTO Artistas(Nome, FotoPerfil, bio) VALUES (@nome, @perfilPadrao, @bio)";
-            SqlCommand command = new SqlCommand(sql, connection);
-
-            command.Parameters.AddWithValue("@nome", artista.Nome);
-            command.Parameters.AddWithValue("@perfilPadrao", artista.FotoPerfil);
-            command.Parameters.AddWithValue("@bio", artista.Bio);
-            int retorno = command.ExecuteNonQuery();
-            Console.WriteLine($"Linhas afetadas {retorno}");
-        }*/
+            using var context = new ScreenSoundContext();
+            context.Artistas.Add(artista);
+            context.SaveChanges();
+        }
         //public void Atualizar(Artista artista )
         //{
         //    using var connection = new ScreenSoundContext().ObterConexao();

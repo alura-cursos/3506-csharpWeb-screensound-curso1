@@ -12,7 +12,10 @@ try
 
 
     //artistaDAL.Adicionar(novoArtista);
-    artistaDAL.Deletar(novoArtista);
+    //artistaDAL.Deletar(novoArtista);
+    artistaDAL.RecuperarPeloNome("Foo Fighters");
+    var artistaRecuperado = artistaDAL.RecuperarPeloNome("Foo Fighters");
+    Console.WriteLine($" Artista Recuperado {artistaRecuperado}");
     var listaArtistas = artistaDAL.Listar();
 
     foreach ( var artist in listaArtistas )

@@ -10,28 +10,22 @@ namespace ScreenSound.Banco
 {
     internal class ArtistaDAl
     {
-        public IEnumerable<Artista> Listar()
+        private readonly ScreenSoundContext context;
+
+        public ArtistaDAl(ScreenSoundContext context)
         {
-            var lista = new List<Artista>();
-            using var context = new ScreenSoundContext();
-           
+            this.context = context;
+        }
+
+        public IEnumerable<Artista> Listar()
+        {           
             return context.Artistas.ToList();
         }
         public void Adicionar(Artista artista)
         {
-            using var context = new ScreenSoundContext();
             context.Artistas.Add(artista);
             context.SaveChanges();
         }
-        //public void Atualizar(Artista artista )
-        //{
-        //    using var connection = new ScreenSoundContext().ObterConexao();
-        //    connection.Open();
-        //    string sql = "UPDATE Artistas SET (Nome = @nome, Bio = @bio WHERE Id = @id )";
-        //    SqlCommand command = new SqlCommand(sql, connection);
-
-
-
-        //}
+       
     }
 }

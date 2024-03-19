@@ -7,9 +7,12 @@ try
     var context = new ScreenSoundContext();
     var artistaDAL = new ArtistaDAl(context);
 
-    var novoArtista = new Artista("Foo Fighters", "Foo Fighters é uma banda de rock alternativo americana formada por Dave Grohl em 1995.");
+    //var novoArtista = new Artista("Foo Fighters", "Foo Fighters é uma banda de rock alternativo americana formada por Dave Grohl em 1995.");
+    var novoArtista = new Artista("Gilberto Gil", "Gilberto Passos Gil Moreira é um cantor, compositor, multi-instrumentista, produtor musical, político e escritor brasileiro.") { Id = 3};
 
-    artistaDAL.Adicionar(novoArtista);
+
+    //artistaDAL.Adicionar(novoArtista);
+    artistaDAL.Deletar(novoArtista);
     var listaArtistas = artistaDAL.Listar();
 
     foreach ( var artist in listaArtistas )

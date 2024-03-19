@@ -34,6 +34,7 @@ namespace ScreenSound.Banco
         public void Deletar(Artista artista)
         {
             context.Artistas.Remove(artista);
+            context.SaveChanges();
         }
     }
 }

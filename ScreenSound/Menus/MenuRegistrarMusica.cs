@@ -11,12 +11,13 @@ internal class MenuRegistrarMusica : Menu
         ExibirTituloDaOpcao("Registro de músicas");
         Console.Write("Digite o artista cuja música deseja registrar: ");
         string nomeDoArtista = Console.ReadLine()!;
-        if (artistasRegistrados.ContainsKey(nomeDoArtista))
+        var artistaRecuperado = artistaDAL.RecuperarPeloNome(nomeDoArtista);
+        if (artistaRecuperado is not null)
         {
             Console.Write("Agora digite o título da música: ");
             string tituloDaMusica = Console.ReadLine()!;
-            Artista artista = artistasRegistrados[nomeDoArtista];
-            artista.AdicionarMusica(new Musica(tituloDaMusica));
+            
+            artistaRecuperado.AdicionarMusica(new Musica(tituloDaMusica));
             Console.WriteLine($"A música {tituloDaMusica} de {nomeDoArtista} foi registrada com sucesso!");
             Thread.Sleep(4000);
             Console.Clear();

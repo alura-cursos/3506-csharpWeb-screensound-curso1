@@ -8,6 +8,6 @@ namespace ScreenSound.Banco
 {
     internal class MusicaDAL
     {
-
+        private readonly ScreenSoundContext context;
     }
 }

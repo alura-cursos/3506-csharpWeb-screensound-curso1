@@ -9,5 +9,10 @@ namespace ScreenSound.Banco
     internal class MusicaDAL
     {
         private readonly ScreenSoundContext context;
+
+        public MusicaDAL(ScreenSoundContext context)
+        {
+            this.context = context;
+        }
     }
 }

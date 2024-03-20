@@ -1,12 +1,13 @@
-﻿using ScreenSound.Modelos;
+﻿using ScreenSound.Banco;
+using ScreenSound.Modelos;
 
 namespace ScreenSound.Menus;
 
 internal class MenuRegistrarArtista : Menu
 {
-    public override void Executar(Dictionary<string, Artista> artistasRegistrados)
+    public override void Executar(ArtistaDAL artistaDAL)
     {
-        base.Executar(artistasRegistrados);
+        base.Executar(artistaDAL);
         ExibirTituloDaOpcao("Registro dos Artistas");
         Console.Write("Digite o nome do artista que deseja registrar: ");
         string nomeDoArtista = Console.ReadLine()!;

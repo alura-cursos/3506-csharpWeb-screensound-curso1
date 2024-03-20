@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ScreenSound.Banco
 {
-    internal class ArtistaDAl
+    internal class ArtistaDAL
     {
         private readonly ScreenSoundContext context;
 
-        public ArtistaDAl(ScreenSoundContext context)
+        public ArtistaDAL(ScreenSoundContext context)
         {
             this.context = context;
         }

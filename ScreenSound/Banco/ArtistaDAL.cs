@@ -9,13 +9,9 @@ using System.Threading.Tasks;
 namespace ScreenSound.Banco
 {
     internal class ArtistaDAL: DAL<Artista>
-    {
-        
+    {       
 
-        public ArtistaDAL(ScreenSoundContext context)
-        {
-            this.context = context;
-        }
+        public ArtistaDAL(ScreenSoundContext context) : base(context) { }
 
         public override IEnumerable<Artista> Listar()
         {           

@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace ScreenSound.Banco
 {
     internal abstract class DAL<T>
-    {
+    { 
+        private readonly ScreenSoundContext context;
+    
         public abstract IEnumerable<T> Listar();
         public abstract void Adicionar(T objeto);
 

@@ -9,7 +9,7 @@ namespace ScreenSound.Banco
 {
     internal abstract class DAL<T> where T : class
     { 
-        private readonly ScreenSoundContext context;
+        protected readonly ScreenSoundContext context;
 
         protected DAL(ScreenSoundContext context)
         {

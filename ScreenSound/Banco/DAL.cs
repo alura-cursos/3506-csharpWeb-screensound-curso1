@@ -16,7 +16,10 @@ namespace ScreenSound.Banco
             this.context = context;
         }
 
-        public abstract IEnumerable<T> Listar();
+        public  IEnumerable<T> Listar()
+        {
+            return context.Set<T>().ToList();
+        }
         public abstract void Adicionar(T objeto);
 
         public abstract void Atualizar(T objeto);

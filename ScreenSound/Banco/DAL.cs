@@ -10,7 +10,12 @@ namespace ScreenSound.Banco
     internal abstract class DAL<T>
     { 
         private readonly ScreenSoundContext context;
-    
+
+        protected DAL(ScreenSoundContext context)
+        {
+            this.context = context;
+        }
+
         public abstract IEnumerable<T> Listar();
         public abstract void Adicionar(T objeto);
 

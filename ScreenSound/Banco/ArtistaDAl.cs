@@ -10,7 +10,7 @@ namespace ScreenSound.Banco
 {
     internal class ArtistaDAL: DAL<Artista>
     {
-        private readonly ScreenSoundContext context;
+        
 
         public ArtistaDAL(ScreenSoundContext context)
         {

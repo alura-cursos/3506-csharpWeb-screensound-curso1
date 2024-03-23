@@ -20,11 +20,23 @@ namespace ScreenSound.Banco
         {
             return context.Set<T>().ToList();
         }
-        public abstract void Adicionar(T objeto);
+        public  void Adicionar(T objeto)
+        {
+            context.Set<T>().Add(objeto);
+            context.SaveChanges();
+        }
 
-        public abstract void Atualizar(T objeto);
+        public  void Atualizar(T objeto)
+        {
+            context.Set<T>().Update(objeto);
+            context.SaveChanges();
+        }
 
-        public abstract void Deletar(T objeto);
+        public  void Deletar(T objeto)
+        {
+            context.Set<T>().Remove(objeto);
+            context.SaveChanges();
+        }
 
     }
 }

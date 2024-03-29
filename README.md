@@ -5,11 +5,11 @@ Nessa janela do Pesquisador de Objetos é onde vamos conseguir gerenciar o nosso
 
 Após pressionar "Enter" ou clicar em "OK", aparecerá na lista de bancos à esquerda todos os bancos disponíveis, inclusive o ScreenSound que acabamos de criar.
 Segundo Passo
-instalar o pacote: Microsoft.Data.SqlClient
-No Visual Studio, vamos em "Ferramentas > Gerenciador de Pacotes do NuGet > Gerenciar Pacotes do NuGet para a Solução…". Na aba "Procurar", vamos pesquisar por "SQL Client".
+instalar os pacotes: Microsoft.Data.SqlClient 5.1.2, Microsoft Entity Framework Core Design 7.013 , Microsoft Entity Framework Core Tools7.013 e Microsoft Entity Framework Core.SqlServer 7.0.13.
 
-O primeiro exibido será o Microsoft.Data.SqlClient, o qual utilizaremos em nosso projeto para estabelecer o vínculo do banco de dados com o projeto em si. À direita, vamos marcar o projeto ScreenSound e clicar em "Instalar". Para concluir, devemos aceitar as licenças.
+Exemplo com Microsoft.Data.SqlClient no Visual Studio, vamos em "Ferramentas > Gerenciador de Pacotes do NuGet > Gerenciar Pacotes do NuGet para a Solução…". Na aba "Procurar", vamos pesquisar por "SQL Client". O primeiro exibido será o Microsoft.Data.SqlClient, o qual utilizaremos em nosso projeto para estabelecer o vínculo do banco de dados com o projeto em si. À direita, vamos marcar o projeto ScreenSound e clicar em "Instalar". Para concluir, devemos aceitar as licenças.
 Para fazer a conexão, precisamos passar o caminho onde está o banco de dados e mais algumas outras informações de configuração. Para localizar essas informações, vamos ao Pesquisador de Objetos do SQL Server, clicamos com o botão direito sobre o banco de dados ScreenSound e vamos em "Propriedades".
+
 
 Na lateral direita, aparecerão várias informações de propriedade. Precisamos da "Cadeia de conexão". Vamos copiar as informações desse campo para usá-las na classe Connection.
 

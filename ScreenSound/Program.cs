@@ -3,7 +3,7 @@ using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
 var context = new ScreenSoundContext();
-var artistaDAL = new ArtistaDAL(context);
+var artistaDAL = new DAL<Artista>(context);
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuRegistrarArtista());
@@ -44,7 +44,7 @@ void ExibirOpcoesDoMenu()
         Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
         menuASerExibido.Executar(artistaDAL);
         if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
-    } 
+    }
     else
     {
         Console.WriteLine("Opção inválida");

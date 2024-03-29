@@ -13,9 +13,8 @@ internal class Menu
         Console.WriteLine(titulo);
         Console.WriteLine(asteriscos + "\n");
     }
-    public virtual void Executar(ArtistaDAL artistaDAL)
+    public virtual void Executar(DAL<Artista> artistaDAL)
     {
         Console.Clear();
     }
-
 }

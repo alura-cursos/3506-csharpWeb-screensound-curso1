@@ -14,3 +14,15 @@ Para fazer a conexão, precisamos passar o caminho onde está o banco de dados e
 Na lateral direita, aparecerão várias informações de propriedade. Precisamos da "Cadeia de conexão". Vamos copiar as informações desse campo para usá-las na classe Connection.
 
 Feito isso, precisamos trazer essas informações. Elas serão a nossa string de conexão. Portanto, podemos criar um private string que se chamará connectionString. Após o igual (=), passaremos todas as informações copiadas das propriedades do banco. Vamos apenas remover o Connect Timeout que vem por padrão 30, para que a execução seja um pouco mais rápida.
+
+Adicionar migration
+Com os pacotes instalados, precisamos adicionar a primeira migration ao nosso projeto.
+
+Para fazer isso, vamos em "Ferramentas > Gerenciador de pacotes do NuGet > Console do gerenciador de pacotes". É nesse console que vamos executar os comandos relacionados às migrations. Primeiramente, vamos adicionar essa migration inicial, que é referente ao status inicial do nosso banco. Vamos usar o comando Add.
+
+Quando escrevemos "Add", se pressionarmos "Tab", ele já começa a sugerir algumas opções. Podemos começar a escrever migration, e a sugestão de que queremos usar essa migration irá aparecer.
+
+Vamos usar "Tab" novamente para ele autocompletar e também precisamos informar qual será o nome inicial, o nome da nossa primeira migration. Podemos colocar projeto inicial.
+
+Add-Migration projetoInicial
+As migrations são um recurso do Entity que nos permite gerenciar tanto a estrutura do nosso banco quanto as diferentes versões que ele terá durante o projeto, sem precisar mexer nos scripts SQL.

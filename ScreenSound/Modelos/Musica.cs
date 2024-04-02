@@ -10,7 +10,7 @@ internal class Musica
     public string Nome { get; set; }
     public int Id { get; set; }
     public int? AnoLancamento { get; set; }
-
+    public Artista? Artista { get; set; }
     public void ExibirFichaTecnica()
     {
         Console.WriteLine($"Nome: {Nome}");

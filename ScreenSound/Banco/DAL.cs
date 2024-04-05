@@ -18,6 +18,11 @@ internal class DAL<T> where T : class
     {
         return context.Set<T>().ToList();
     }
+    public IEnumerable<T> ListarPor(Func<T, bool> condicao)
+    {
+        return context.Set<T>().Where(condicao);
+    }
+
     public void Adicionar(T objeto)
     {
         context.Set<T>().Add(objeto);

@@ -1,4 +1,9 @@
 Primeiro passo é criar o banco de dados
+Para utilizarmos o SQL Server no projeto, é preciso que você tenha instalado o seu componente. Geralmente, este componente já é instalado junto com o Visual Studio quando você faz o processo padrão de instalação, mas você pode seguir o passo a passo abaixo para conferir se tudo está instalado corretamente:
+
+Abra o Visual Studio Installer;
+Em Visual Studio Community 2022, na aba instalados, clique em Modificar;
+Na aba Componentes individuais, pesquise por “sql” na caixa de pesquisa e verifique se o componente SQL Server Express 2019 LocalDB está assinalado.
 Criando o banco de dados ScreenSound : Para criarmos um banco para utilizar na nossa aplicação, vamos em "Exibir > Pesquisador de Objetos do SQL Server". Ao clicar nele, abrirá uma janela na lateral esquerda do Visual Studio.
 
 Nessa janela do Pesquisador de Objetos é onde vamos conseguir gerenciar o nosso banco. Teremos a pasta "Banco de Dados", e clicando com o botão direito sobre ela, temos a opção "Adicionar Novo Banco de Dados". Vamos selecionar essa opção e criar um banco de dados com o nome do nosso projeto. Portanto, vamos chamá-lo de ScreenSound.

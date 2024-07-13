@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ScreenSound.Banco
 {
-    internal class DAL<T> where T : class
+    public class DAL<T> where T : class
     {
-        protected readonly ScreenSoundContext context;
+        private readonly ScreenSoundContext context;
 
         public DAL(ScreenSoundContext context)
         {

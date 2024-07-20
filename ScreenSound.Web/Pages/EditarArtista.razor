@@ -1,0 +1,86 @@
+﻿@page "/EditarArtista/{NomeArtista}"
+@inject ArtistasAPI artistasAPI
+@inject NavigationManager navigationManager
+@if (Artista is not null)
+{
+    <MudPaper Class="px-8 pt-2 pb-4 mx-12 my-8" Justify="Justify.Center">
+
+    <MudText Class="mt-8" Typo="Typo.h4">Edição de Artista</MudText>
+
+    <MudForm>
+
+        <MudTextField Class="mt-4" T="string" Placeholder="Nome do Artista"
+                      Variant="Variant.Outlined"
+                      @bind-Value="nome"
+                      Required="true"
+                      RequiredError="Campo obrigatório." />
+
+        <MudTextField Class="mt-4" T="string" Placeholder="Biografia do artista"
+                      Variant="Variant.Outlined"
+                      @bind-Value="biografia"
+                      Lines="4"
+                      Required="true"
+                      RequiredError="Campo obrigatório." />
+
+        <div class="d-flex align-center justify-space-between mt-4">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Class="ml-auto"
+                       @onclick="Editar">
+                Salvar
+            </MudButton>
+            <MudButton Variant="Variant.Filled"
+                       @onclick="Deletar"
+                       Color="Color.Secondary"
+                       Class="ml-3">
+                Deletar
+            </MudButton>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Info"
+                       Class="ml-3"
+                       @onclick="VoltarParaListagem">
+                Voltar
+            </MudButton>
+        </div>
+
+    </MudForm>
+</MudPaper>
+}
+else
+{
+    <MudProgressCircular Indeterminate="true"></MudProgressCircular>
+}
+
+@code {
+    private string? nome;
+    private string? biografia;
+    [Parameter]
+    public string? NomeArtista { get; set; }
+
+    public ArtistaResponse? Artista { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Artista = await artistasAPI.GetArtistaPorNomeAsync(NomeArtista!);
+        nome = Artista!.Nome;
+        biografia = Artista!.Bio;
+    }
+
+    private async Task Deletar()
+    {        
+        await artistasAPI.DeleteArtistaAsync(Artista!.Id);
+        navigationManager.NavigateTo("/Artistas");
+    }
+
+    private async Task Editar()
+    {
+        var requestEdit = new ArtistaRequestEdit(Artista!.Id, nome!, biografia!);
+        await artistasAPI.UpdateArtistaAsync(requestEdit);           
+        navigationManager.NavigateTo("/Artistas");     
+    }
+
+    private void VoltarParaListagem()
+    {
+        navigationManager.NavigateTo("/Artistas");
+    }
+}

@@ -1,5 +1,5 @@
 ﻿namespace ScreenSound.API.Request
 {
-    public record GeneroRequest(string nome, string Descricao);
+    public record GeneroRequest(string Nome, string Descricao);
     
 }

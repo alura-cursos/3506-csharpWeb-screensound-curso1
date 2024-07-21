@@ -18,4 +18,8 @@ builder.Services.AddHttpClient("API", client => {
     client.DefaultRequestHeaders.Add("Accept", "application/json");
 });
 
+builder.Services.AddHttpClient<MusicasAPI>(client =>
+{
+    client.BaseAddress = new Uri("https://screensound-webapi.azurewebsites.net/");
+});
 await builder.Build().RunAsync();

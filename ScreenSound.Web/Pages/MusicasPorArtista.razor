@@ -11,8 +11,8 @@
         @foreach (var musica in musicaPorPagina)
         {
             <MudItem xs="3">
-                <CardMusica Musica =musica/>
-            </MudItem>            
+                <CardMusica Musica=musica />
+            </MudItem>
         }
     </MudGrid>
 }
@@ -24,6 +24,7 @@
     private int totalPaginas;
     private ICollection<MusicaResponse>? musicas;
     private ICollection<MusicaResponse>? musicaPorPagina;
+
 
     protected override async Task OnInitializedAsync()
     {

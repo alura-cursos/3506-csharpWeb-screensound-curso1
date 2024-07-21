@@ -14,12 +14,17 @@ namespace ScreenSound.Web.Services
         public async Task<List<GeneroResponse>?> GetGenerosAsync()
         {
             return await _httpClient.GetFromJsonAsync<List<GeneroResponse>>("generos");
-
         }
-        public async Task<GeneroResponse>? GetGeneroPorNomeAsync(string nome)
+
+        public async Task<GeneroResponse?> GetGeneroPorNomeAsync(string nome)
         {
             return await _httpClient.GetFromJsonAsync<GeneroResponse>($"generos/{nome}");
-             
+        }
+
+        // Novo método para obter músicas por gênero
+        public async Task<List<MusicaResponse>?> GetMusicasPorGeneroAsync(string genero)
+        {
+            return await _httpClient.GetFromJsonAsync<List<MusicaResponse>>($"musicas/genero/{genero}");
         }
     }
 }

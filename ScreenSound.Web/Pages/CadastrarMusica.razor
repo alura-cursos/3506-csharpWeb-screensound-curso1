@@ -17,13 +17,13 @@
                       RequiredError="Campo obrigatório." />
 
         <MudSelect Class="mt-4" T="ArtistaResponse" Label="Artistas" Variant="Variant.Outlined" ValueChanged="ArtistaSelecionado" AnchorOrigin="Origin.BottomCenter">
-            @if (artistas is not null)
-            {
-                @foreach (var artista in artistas)
-                {
-                    <MudSelectItem Value="artista" />
-                }
-            }
+           @if (artistas is not null)
+    {
+        @foreach (var artista in artistas)
+        {
+            <MudSelectItem Value="artista">@artista.Nome</MudSelectItem>
+        }
+    }
         </MudSelect>
 
         <MudNumericField Class="mt-4" Placeholder="Ano de lançamento"
@@ -34,19 +34,13 @@
                          RequiredError="Campo obrigatório." />
 
         <MudSelect Class="mt-4" T="GeneroResponse" Label="Gêneros" Variant="Variant.Outlined" ValueChanged="GeneroSelecionado" AnchorOrigin="Origin.BottomCenter">
-            @if (generos is not null)
-            {
-                @foreach (var generos in generos)
-                {
-                    <MudSelectItem Value="generos" />
-                }
-            }
-            @if (GenerosSelecionados is not null)
-            {
-                foreach (var genero in GenerosSelecionados)
-                {
-                    <MudAlert Severity="Severity.Info">@(genero.Nome) adicionado como gênero da música.</MudAlert>
-                }
+             @if (generos is not null)
+    {
+        @foreach (var genero in generos)
+        {
+            <MudSelectItem Value="genero">@genero.Nome</MudSelectItem>
+        }
+    }
             }
         </MudSelect>
 

@@ -14,8 +14,9 @@ namespace ScreenSound.Banco
 
         public DbSet<Genero> Generos { get; set; }
 
-        private string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ScreenSoundV0;Integrated Security=True;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
+
+        private string connectionString = "Server=tcp:screensoundserver-web.database.windows.net,1433;Initial Catalog=screensoundserver;Persist Security Info=False;User ID=nicolas;Password=Onishi08!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public ScreenSoundContext(DbContextOptions options) : base(options)
         {
 

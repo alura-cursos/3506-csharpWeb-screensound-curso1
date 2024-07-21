@@ -10,6 +10,12 @@ using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Host.ConfigureAppConfiguration(config =>
+{
+    var settings = config.Build();
+    config.AddAzureAppConfiguration("Endpoint=https://screensound-configuration.azconfig.io;Id=+gtC;Secret=Fa9a276xtQuiiaCFd0HKAkB3WpbFiqOxyvvpxmfdsVTtEk4PAccWJQQJ99AGACZoyfiS85EQAAACAZAC5Bs6");
+});
+
 builder.Services.AddDbContext<ScreenSoundContext>((options) => {
     options
             .UseSqlServer(builder.Configuration["ConnectionStrings:ScreenSoundDB"])
@@ -33,6 +39,8 @@ app.UseCors(options =>
     .AllowAnyHeader();
 
 });
+
+app.UseStaticFiles();
 
 app.AddEndPointsArtistas();
 app.AddEndPointsMusicas();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using ScreenSound.API.Request;
 using ScreenSound.API.Requests;
@@ -15,7 +16,7 @@ public static class GeneroExtensions
     {
         app.MapPost("/Generos", ([FromServices] DAL<Genero> dal, [FromBody] GeneroRequest generoReq) =>
         {
-            dal.adicionar(RequestToEntity(generoReq));
+            dal.Adicionar(RequestToEntity(generoReq));
         });
 
 
@@ -42,10 +43,11 @@ public static class GeneroExtensions
             {
                 return Results.NotFound("Gênero para exclusão não encontrado.");
             }
-            dal.deletar(genero);
+            dal.Deletar(genero);
             return Results.NoContent();
         });
     }
+
     private static Genero RequestToEntity(GeneroRequest generoRequest)
     {
         return new Genero() { Nome = generoRequest.nome, Descricao = generoRequest.Descricao };
@@ -60,6 +62,4 @@ public static class GeneroExtensions
     {
         return new GeneroResponse(genero.Id, genero.Nome!, genero.Descricao!);
     }
-
-
 }

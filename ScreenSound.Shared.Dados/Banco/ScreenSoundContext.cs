@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ScreenSound.Modelos;
+using ScreenSound.Shared.Dados.Modelos;
 using ScreenSound.Shared.Modelos.Modelos;
 
 
 namespace ScreenSound.Banco
 {
-    public class ScreenSoundContext : DbContext
+    public class ScreenSoundContext : IdentityDbContext<PessoaComAcesso, PerfilDeAcesso, int>
     {
 
         public DbSet<Artista> Artistas { get; set; }
@@ -22,6 +24,10 @@ namespace ScreenSound.Banco
 
         }
 
+        public ScreenSoundContext()
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (optionsBuilder.IsConfigured)
@@ -35,12 +41,11 @@ namespace ScreenSound.Banco
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Musica>()
                 .HasMany(c => c.Generos)
                 .WithMany(c => c.Musicas);
         }
-
-
 
     }
 }

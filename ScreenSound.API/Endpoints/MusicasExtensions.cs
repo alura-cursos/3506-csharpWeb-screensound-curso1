@@ -8,7 +8,6 @@ using ScreenSound.Shared.Modelos.Modelos;
 
 namespace ScreenSound.API.Endpoints;
 
-
 public static class MusicasExtensions
 {
     public static void AddEndPointsMusicas(this WebApplication app)

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using ScreenSound.Web;
 using ScreenSound.Web.Services;
@@ -10,8 +11,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddMudServices();
 
-builder.Services.AddTransient<ArtistasAPI>();
-builder.Services.AddTransient<MusicasAPI>();
+builder.Services.AddScoped<ArtistasAPI>();
+builder.Services.AddScoped<MusicasAPI>();
 
 builder.Services.AddHttpClient("API", client => {
     client.BaseAddress = new Uri(builder.Configuration["APIServer:Url"]!);

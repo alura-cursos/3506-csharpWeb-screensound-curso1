@@ -1,0 +1,34 @@
+﻿@page "/Login"
+@inject AuthAPI AuthAPI
+
+<MudPaper Class="px-8 pt-2 pb-4 mx-16 my-8" Justify="Justify.Center">
+    <MudForm>
+
+        <MudTextField T="string" Label="Email" @bind-Value="email"
+                      Variant="Variant.Outlined" Class="my-4"
+                      Required="true" RequiredError="Email obrigatório!"
+                      OnlyValidateIfDirty="true" />
+
+        <MudTextField T="string" Label="Senha" @bind-Value="senha"
+                      InputType="InputType.Password"
+                      Variant="Variant.Outlined" Class="my-4"
+                      Required="true" RequiredError="Senha obrigatória!"
+                      OnlyValidateIfDirty="true" />
+
+        <MudButton Variant="Variant.Filled" Color="Color.Primary"
+                   Class="my-6" @onclick="FazerLogin">
+            Login
+        </MudButton>
+
+    </MudForm>
+</MudPaper>
+@code {
+    private string? email;
+    private string? senha;
+
+    private async Task FazerLogin()
+    {
+        await AuthAPI.LoginAsync(email, senha);
+    }
+
+}

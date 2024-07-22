@@ -1,13 +1,14 @@
-﻿using ScreenSound.Web.Requests;
+﻿
+using ScreenSound.Web.Requests;
 using ScreenSound.Web.Response;
 using System.Net.Http.Json;
 
 namespace ScreenSound.Web.Services;
 
-public class MusicasAPI
+public class MusicaAPI
 {
     private readonly HttpClient _httpClient;
-    public MusicasAPI(IHttpClientFactory factory)
+    public MusicaAPI(IHttpClientFactory factory)
     {
         _httpClient = factory.CreateClient("API");
     }
@@ -15,11 +16,6 @@ public class MusicasAPI
     {
         return await _httpClient.GetFromJsonAsync<MusicaResponse>($"musicas/{nome}");
     }
-    public async Task<IEnumerable<MusicaResponse>> GetMusicasPorGeneroAsync(string genero)
-    {
-        return await _httpClient.GetFromJsonAsync<IEnumerable<MusicaResponse>>($"musicas/porGenero/{genero}");
-    }
-
     public async Task<ICollection<MusicaResponse>?> GetMusicasAsync()
     {
         return await _httpClient.GetFromJsonAsync<ICollection<MusicaResponse>>("musicas");

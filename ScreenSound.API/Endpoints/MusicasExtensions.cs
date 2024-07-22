@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using ScreenSound.API.Request;
 using ScreenSound.API.Requests;
 using ScreenSound.API.Response;
@@ -12,8 +13,10 @@ public static class MusicasExtensions
 {
     public static void AddEndPointsMusicas(this WebApplication app)
     {
+        var groupBuilder = app.MapGroup("musicas").RequireAuthorization().WithTags("Músicas");
+
         #region Endpoint Músicas
-        app.MapGet("/Musicas", ([FromServices] DAL<Musica> dal) =>
+        groupBuilder.MapGet("", ([FromServices] DAL<Musica> dal) =>
         {
             var musicaList = dal.Listar();
             if (musicaList is null)
@@ -24,7 +27,7 @@ public static class MusicasExtensions
             return Results.Ok(musicaListResponse);
         });
 
-        app.MapGet("/Musicas/{nome}", ([FromServices] DAL<Musica> dal, string nome) =>
+        groupBuilder.MapGet("{nome}", ([FromServices] DAL<Musica> dal, string nome) =>
         {
             var musica = dal.RecuperarPor(a => a.Nome.ToUpper().Equals(nome.ToUpper()));
             if (musica is null)
@@ -35,7 +38,7 @@ public static class MusicasExtensions
 
         });
 
-        app.MapPost("/Musicas", ([FromServices] DAL<Musica> dal, [FromServices] DAL<Genero> dalGenero, [FromBody] MusicaRequest musicaRequest) =>
+        groupBuilder.MapPost("", ([FromServices] DAL<Musica> dal, [FromServices] DAL<Genero> dalGenero, [FromBody] MusicaRequest musicaRequest) =>
         {
             var musica = new Musica(musicaRequest.nome)
             {
@@ -49,7 +52,7 @@ public static class MusicasExtensions
             return Results.Ok();
         });
 
-        app.MapDelete("/Musicas/{id}", ([FromServices] DAL<Musica> dal, int id) => {
+        groupBuilder.MapDelete("{id}", ([FromServices] DAL<Musica> dal, int id) => {
             var musica = dal.RecuperarPor(a => a.Id == id);
             if (musica is null)
             {
@@ -60,7 +63,7 @@ public static class MusicasExtensions
 
         });
 
-        app.MapPut("/Musicas", ([FromServices] DAL<Musica> dal, [FromBody] MusicaRequestEdit musicaRequestEdit) => {
+        groupBuilder.MapPut("", ([FromServices] DAL<Musica> dal, [FromBody] MusicaRequestEdit musicaRequestEdit) => {
             var musicaAAtualizar = dal.RecuperarPor(a => a.Id == musicaRequestEdit.Id);
             if (musicaAAtualizar is null)
             {

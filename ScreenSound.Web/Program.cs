@@ -11,16 +11,15 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddMudServices();
 
-builder.Services.AddScoped<ArtistasAPI>();
-builder.Services.AddScoped<MusicasAPI>();
+builder.Services.AddScoped<CookieHandler>();
+builder.Services.AddScoped<ArtistaAPI>();
+builder.Services.AddScoped<MusicaAPI>();
+builder.Services.AddScoped<AuthAPI>();
 
 builder.Services.AddHttpClient("API", client => {
     client.BaseAddress = new Uri(builder.Configuration["APIServer:Url"]!);
     client.DefaultRequestHeaders.Add("Accept", "application/json");
-});
+}).AddHttpMessageHandler<CookieHandler>();
 
-builder.Services.AddHttpClient<MusicasAPI>(client =>
-{
-    client.BaseAddress = new Uri("https://screensound-webapi.azurewebsites.net/");
-});
+
 await builder.Build().RunAsync();

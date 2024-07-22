@@ -1,37 +1,41 @@
 ﻿@page "/Artistas"
-@inject ArtistasAPI artistasAPI
+@inject ArtistaAPI artistaAPI
+@inject NavigationManager navigationManager
 
 <MudStack Class="mt-4 mb-4" Row="true" Justify="Justify.SpaceBetween">
     <MudText Class="mb-4" Typo="Typo.h4">Artistas cadastrados</MudText>
     <MudPagination Count="@totalPaginas" SelectedChanged="PaginaMudou"></MudPagination>
 </MudStack>
 
-@if (artistasPorPagina is not null)
+@if (artistasDaPagina is not null)
 {
     <MudGrid>
-        @foreach (var artista in artistasPorPagina)
-        {
-            <MudItem xs="3">
-              <CardArtista Artista="artista" />
-            </MudItem>
-        }
+    @foreach (var artista in artistasDaPagina)
+    {
+           <MudItem xs="3">
+                <CardArtista Artista=artista />
+            </MudItem>           
+    }       
     </MudGrid>
+} else
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
 }
 
 @code {
-    private ICollection<ArtistaResponse>? artistas;
-    private int tamanho = 6;
+    private int tamanho = 8;
     private int totalItens;
     private int totalPaginas;
-    private ICollection<ArtistaResponse>? artistasPorPagina;
+    private ICollection<ArtistaResponse>? artistasDaPagina;
+    private ICollection<ArtistaResponse>? listaCompleta = Enumerable.Empty<ArtistaResponse>().ToList();
 
     protected override async Task OnInitializedAsync()
     {
-        artistas = await artistasAPI.GetArtistasAsync();
-        if (artistas is not null)
+        listaCompleta = await artistaAPI.GetArtistasAsync();
+        if (listaCompleta is not null)
         {
-            artistas = artistas.OrderByDescending(a => a.Id).ToList();
-            totalItens = artistas.Count();
+            listaCompleta = listaCompleta.OrderByDescending(a => a.Id).ToList();
+            totalItens = listaCompleta.Count();
             totalPaginas = Convert.ToInt32(Math.Ceiling((totalItens * 1.0) / tamanho));
             this.PaginaMudou(1);
         }
@@ -40,7 +44,7 @@
     private void PaginaMudou(int pageNumber)
     {
         var indice = pageNumber - 1;
-        artistasPorPagina = artistas!
+        artistasDaPagina = listaCompleta!
             .Skip(tamanho * indice)
             .Take(tamanho)
             .ToList();

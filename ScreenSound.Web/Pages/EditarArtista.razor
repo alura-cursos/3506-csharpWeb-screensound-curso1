@@ -11,18 +11,7 @@
 
         <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
 
-            <MudTextField Class="mt-4" T="string" Placeholder="Nome do Artista"
-                          @bind-Value="Nome"
-                          Variant="Variant.Outlined"
-                          Required="true"
-                          RequiredError="Campo obrigatório." />
 
-            <MudTextField Class="mt-4" T="string" Placeholder="Biografia do artista"
-                          @bind-Value="Bio"
-                          Variant="Variant.Outlined"
-                          Lines="4"
-                          Required="true"
-                          RequiredError="Campo obrigatório." />
 
             <div class="d-flex align-center justify-space-between mt-4">
                 <MudRating @bind-SelectedValue="Classificacao"

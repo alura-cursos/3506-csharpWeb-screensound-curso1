@@ -9,13 +9,7 @@
     <MudText Class="mt-8" Typo="Typo.h4">Edição de Música</MudText>
 
     <MudForm>
-
-        <MudTextField Class="mt-4" T="string" Placeholder="Nome da música/canção"
-                      @bind-Value="nome"
-                      Variant="Variant.Outlined"
-                      Required="true"
-                      RequiredError="Campo obrigatório." />
-
+          
         <MudSelect Class="mt-4" T="ArtistaResponse" Label="Artistas" Variant="Variant.Outlined" ValueChanged="ArtistaSelecionado" AnchorOrigin="Origin.BottomCenter">
             @if (artistas is not null)
             {

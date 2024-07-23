@@ -2,7 +2,13 @@
 @inject AuthAPI AuthAPI
 
 <MudPaper Class="px-8 pt-2 pb-4 mx-16 my-8" Justify="Justify.Center">
-    <MudForm>
+
+    <AuthorizeView>
+        <Authorized>
+            <p>Você está conectado como @context.User.Identity.Name</p>
+        </Authorized>
+        <NotAuthorized>
+            <MudForm>
 
         <MudTextField T="string" Label="Email" @bind-Value="email"
                       Variant="Variant.Outlined" Class="my-4"
@@ -21,6 +27,9 @@
         </MudButton>
 
     </MudForm>
+        </NotAuthorized>
+    </AuthorizeView>
+    
 </MudPaper>
 @code {
     private string? email;

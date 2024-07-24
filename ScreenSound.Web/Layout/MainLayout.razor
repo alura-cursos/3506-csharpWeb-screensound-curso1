@@ -1,0 +1,39 @@
+﻿@inherits LayoutComponentBase
+<MudThemeProvider Theme="currentTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Color="Color.Surface" Fixed="true" Elevation="2">
+        <MudImage Src="images/screensound-logo.png"></MudImage>
+        <MudSpacer/>
+        <AuthorizeView>
+            <Authorized>
+                <MudAvatar Color="Color.Default">
+                    <MudIcon Icon="@Icons.Material.Filled.Person"></MudIcon>
+                </MudAvatar>
+                <MudButton Class="ml-4" Href="logout"
+                           Variant="Variant.Outlined"
+                           Color="Color.Default">Logout</MudButton>
+            </Authorized>
+            <NotAuthorized>
+                <MudButton Class="ml-4" Href="login"
+                           Variant="Variant.Outlined"
+                           Color="Color.Default">Login</MudButton>
+            </NotAuthorized>
+        </AuthorizeView>
+    </MudAppBar>
+    <MudDrawer Open="true" ClipMode="DrawerClipMode.Always" Elevation="2">
+        <NavMenu></NavMenu>
+    </MudDrawer>
+    <MudMainContent class="main-content pa-10">
+        @Body
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private MudTheme currentTheme = new MudTheme()
+        {
+            Palette = ScreendsoundPallete.CreatePallete
+        };
+}

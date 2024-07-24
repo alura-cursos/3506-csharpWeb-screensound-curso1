@@ -1,0 +1,23 @@
+﻿@page "/MusicasPorArtista"
+@inject MusicaAPI musicaAPI
+
+<h3>Músicas por artista</h3>
+@if (musicas is not null)
+{
+    <MudGrid>
+        @foreach (var musica in musicas)
+        {
+            <MudItem xs="3">
+                <CardMusica Musica=musica />
+            </MudItem>
+        }
+    </MudGrid>
+}
+
+@code {
+    private ICollection<MusicaResponse>? musicas;
+    protected override async Task OnInitializedAsync()
+    {
+        musicas = await musicaAPI.GetMusicasAsync();
+    }
+}

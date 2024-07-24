@@ -1,0 +1,37 @@
+﻿﻿<MudCard>
+    <MudCardMedia Image=@Imagem></MudCardMedia>
+    <MudCardHeader>
+        <CardHeaderContent>
+            <MudText Typo="Typo.h6">@Artista!.Nome</MudText>
+        </CardHeaderContent>
+    </MudCardHeader>
+    <MudCardContent>
+        <MudText Typo="Typo.body2">@LimitaCaracteres(Artista!.Bio, 150)</MudText>
+        <MudRating SelectedValue="@Convert.ToInt32(Artista!.Classificacao)" />
+    </MudCardContent>
+    <MudCardActions>
+        <MudButton Color="Color.Warning"
+                   Variant="Variant.Outlined"
+                   Href=@($"/EditarArtista/{Artista!.Nome}")>Detalhes</MudButton>
+    </MudCardActions>
+</MudCard>
+
+
+@code {
+    [Parameter]
+    public ArtistaResponse? Artista { get; set; }
+
+    public string? Imagem { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Imagem = Artista!.FotoPerfil!.Contains("Foto") ? $"https://localhost:7089/{Artista!.FotoPerfil}" : "images/cardArtista.png";
+
+    }
+
+    private string LimitaCaracteres(string texto, int tamanhoMaximo)
+    {
+        tamanhoMaximo -= 3;
+        return (texto.Length >= tamanhoMaximo) ? $"{texto.Substring(0, tamanhoMaximo)}..." : texto;
+    }
+}

@@ -1,12 +1,10 @@
-﻿using ScreenSound.Menus;
+﻿
+using ScreenSound.Banco;
+using ScreenSound.Menus;
 using ScreenSound.Modelos;
 
-Artista ira = new Artista("Ira!", "Banda Ira!");
-Artista beatles = new("The Beatles", "Banda The Beatles");
-
-Dictionary<string, Artista> artistasRegistrados = new();
-artistasRegistrados.Add(ira.Nome, ira);
-artistasRegistrados.Add(beatles.Nome, beatles);
+var context = new ScreenSoundContext();
+var artistaDAL = new DAL<Artista>(context);
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuRegistrarArtista());
@@ -36,6 +34,7 @@ void ExibirOpcoesDoMenu()
     Console.WriteLine("Digite 2 para registrar a música de um artista");
     Console.WriteLine("Digite 3 para mostrar todos os artistas");
     Console.WriteLine("Digite 4 para exibir todas as músicas de um artista");
+    Console.WriteLine("Digite 5 para exibir músicas por ano de lançamento");
     Console.WriteLine("Digite -1 para sair");
 
     Console.Write("\nDigite a sua opção: ");
@@ -45,9 +44,9 @@ void ExibirOpcoesDoMenu()
     if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
     {
         Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
-        menuASerExibido.Executar(artistasRegistrados);
+        menuASerExibido.Executar(artistaDAL);
         if (opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
-    } 
+    }
     else
     {
         Console.WriteLine("Opção inválida");

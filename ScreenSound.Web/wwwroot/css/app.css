@@ -1,0 +1,5 @@
+div.mud-main-content.main-content {
+    background: linear-gradient(180deg, #96F 0%, #000 100%) !important;
+    margin-top: 64px;
+    min-height: 100vh;
+}

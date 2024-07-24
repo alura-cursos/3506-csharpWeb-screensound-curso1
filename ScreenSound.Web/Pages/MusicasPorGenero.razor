@@ -1,37 +1,6 @@
 ﻿@page "/MusicasPorGenero"
-@inject MusicaAPI musicasAPI
-
-<MudStack Class="mt-4 mb-4" Row="true" Justify="Justify.SpaceBetween">
-    <MudText Class="mb-4" Typo="Typo.h4">Músicas por Gênero</MudText>
-    <MudPagination Count="@totalPaginas" SelectedChanged="PaginaMudou"></MudPagination>
-</MudStack>
-@if (musicaPorPagina is not null)
-{
-    <MudGrid>
-        @foreach (var musica in musicaPorPagina)
-        {
-            <MudItem xs="3">
-                <CardMusica Musica=musica />
-            </MudItem>
-        }
-        </MudGrid>
-}
+<h3>Músicas por gênero</h3>
 
 @code {
-    private int tamanho = 8;
-    private int totalItens;
-    private int totalPaginas;
-    private ICollection<MusicaResponse>? musicas;
-    private ICollection<MusicaResponse>? musicaPorPagina;
-    private string generoSelecionado = "Rock"; // Você pode mudar para o gênero padrão desejado
 
-   
-    private void PaginaMudou(int pageNumber)
-    {
-        var indice = pageNumber - 1;
-        musicaPorPagina = musicas!
-            .Skip(tamanho * indice)
-            .Take(tamanho)
-            .ToList();
-    }
 }

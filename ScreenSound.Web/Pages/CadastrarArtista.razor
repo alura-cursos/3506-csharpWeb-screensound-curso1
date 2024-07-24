@@ -4,13 +4,26 @@
 @inject NavigationManager navigationManager
 @inject ISnackbar Snackbar
 
+<PageTitle>Cadastrar Artista</PageTitle>
+
 <MudPaper Class="px-8 pt-2 pb-4 mx-12 my-8" Justify="Justify.Center">
 
     <MudText Class="mt-8" Typo="Typo.h4">Cadastro do Artista</MudText>
 
     <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
 
-       
+        <MudTextField Class="mt-4" T="string" Placeholder="Nome do Artista" 
+            @bind-Value="nome"
+            Variant="Variant.Outlined"
+            Required="true" 
+            RequiredError="Campo obrigatório." />
+
+        <MudTextField Class="mt-4" T="string" Placeholder="Biografia do artista"
+            @bind-Value="biografia"
+            Variant="Variant.Outlined"
+            Lines="4"
+            Required="true" 
+            RequiredError="Campo obrigatório." />
 
         <div class="d-flex align-center justify-space-between mt-4">
             <MudCardContent>

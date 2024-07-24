@@ -1,5 +1,4 @@
-﻿
-using MudBlazor;
+﻿using MudBlazor;
 using MudBlazor.Utilities;
 
 namespace ScreenSound.Web.Layout;

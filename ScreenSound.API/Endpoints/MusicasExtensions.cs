@@ -1,6 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
-using ScreenSound.API.Request;
+﻿using Microsoft.AspNetCore.Mvc;
 using ScreenSound.API.Requests;
 using ScreenSound.API.Response;
 using ScreenSound.Banco;
@@ -13,9 +11,12 @@ public static class MusicasExtensions
 {
     public static void AddEndPointsMusicas(this WebApplication app)
     {
-        var groupBuilder = app.MapGroup("musicas").RequireAuthorization().WithTags("Músicas");
-
         #region Endpoint Músicas
+        var groupBuilder = app
+            .MapGroup("musicas")
+            .RequireAuthorization()
+            .WithTags("Músicas");
+
         groupBuilder.MapGet("", ([FromServices] DAL<Musica> dal) =>
         {
             var musicaList = dal.Listar();

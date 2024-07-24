@@ -1,4 +1,5 @@
 ﻿@page "/EditarArtista/{NomeArtista}"
+
 @inject ArtistaAPI artistaAPI
 @inject NavigationManager navigationManager
 @inject ISnackbar Snackbar
@@ -11,11 +12,25 @@
 
         <MudForm @ref="form" @bind-IsValid="@success" @bind-Errors="@errors">
 
+            <MudTextField Class="mt-4" T="string" Placeholder="Nome do Artista"
+                          @bind-Value="Nome"
+                          Variant="Variant.Outlined"
+                          Required="true"
+                          RequiredError="Campo obrigatório." />
 
+            <MudTextField Class="mt-4" T="string" Placeholder="Biografia do artista"
+                          @bind-Value="Bio"
+                          Variant="Variant.Outlined"
+                          Lines="4"
+                          Required="true"
+                          RequiredError="Campo obrigatório." />
 
             <div class="d-flex align-center justify-space-between mt-4">
-                <MudRating @bind-SelectedValue="Classificacao"
-                           />
+
+                <MudRating 
+                    @bind-SelectedValue="Classificacao"
+                    @onclick="AvaliarArtista"/>
+
                 <div>
                     <MudButton Variant="Variant.Filled"
                                Color="Color.Primary"
@@ -37,6 +52,7 @@
                         Voltar
                     </MudButton>
                 </div>
+                
             </div>
 
         </MudForm>
@@ -55,14 +71,15 @@ else
     MudForm? form;
     public ArtistaResponse? Artista { get; set; }
     public string? Nome { get; set; } = string.Empty;
-    public string? Bio { get; set; } = string.Empty;
+    public string? Bio { get; set; }=string.Empty;
     public int Classificacao { get; set; }
+
 
     [Parameter]
     public string? NomeArtista { get; set; }
 
     protected override async Task OnInitializedAsync()
-    {
+    {       
         Artista = await artistaAPI.GetArtistaPorNomeAsync(NomeArtista!);
         if (Artista is null)
         {
@@ -71,7 +88,6 @@ else
         }
         Nome = Artista!.Nome;
         Bio = Artista!.Bio;
-        
     }
     private void VoltarParaListagem()
     {
@@ -87,7 +103,7 @@ else
     {
         try
         {
-            var requestEdit = new ArtistaRequestEdit(Artista.Id, Nome, Bio, Artista.FotoPerfil);
+            var requestEdit = new ArtistaRequestEdit(Artista.Id,Nome,Bio,Artista.FotoPerfil);
             await artistaAPI.UpdateArtistaAsync(requestEdit);
             Snackbar.Add("Artista atualizado com sucesso!", Severity.Success);
             navigationManager.NavigateTo("/Artistas");
@@ -114,5 +130,9 @@ else
 
     }
 
-   
+
+    private async Task AvaliarArtista()
+    {
+        await artistaAPI.AvaliaArtistaAsync(Artista!.Id, Classificacao);
+    }
 }

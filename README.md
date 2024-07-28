@@ -1,3 +1,94 @@
+# Projeto ScreenSound
+
+Este repositório contém o código fonte do projeto **ScreenSound**. É um aplicativo desktop desenvolvido em C# que permite o cadastro e gerenciamento de informações sobre músicos, suas músicas, álbuns e outros detalhes relevantes. O projeto utiliza o Entity Framework Core para interagir com um banco de dados SQL Server, garantindo a persistência dos dados de forma organizada e eficiente.
+
+## Pré-requisitos
+
+- Visual Studio 2022 ou superior
+- .NET 7 SDK
+- SQL Server Express LocalDB (geralmente instalado junto com o Visual Studio)
+
+## Primeiro Passo: Criar o Banco de Dados
+
+Para utilizarmos o SQL Server no projeto, é necessário ter o componente SQL Server Express LocalDB instalado. Normalmente, este componente é instalado com o Visual Studio durante o processo padrão de instalação. No entanto, siga os passos abaixo para verificar se está tudo instalado corretamente:
+
+1. Abra o **Visual Studio Installer**.
+2. Em **Visual Studio Community 2022**, na aba **Instalados**, clique em **Modificar**.
+3. Na aba **Componentes Individuais**, pesquise por “sql” na caixa de pesquisa e verifique se o componente **SQL Server Express 2019 LocalDB** está assinalado.
+
+### Criando o Banco de Dados ScreenSound
+
+1. No Visual Studio, vá em **Exibir > Pesquisador de Objetos do SQL Server**. Uma janela será aberta na lateral esquerda do Visual Studio.
+2. Nessa janela, localize a pasta **Banco de Dados**. Clique com o botão direito sobre ela e selecione **Adicionar Novo Banco de Dados**.
+3. Nomeie o banco de dados como **ScreenSound** e clique em **OK**. O banco de dados aparecerá na lista de bancos à esquerda.
+
+## Segundo Passo: Instalar os Pacotes
+
+Instale os seguintes pacotes:
+
+- `Microsoft.Data.SqlClient` versão 5.1.2
+- `Microsoft.EntityFrameworkCore.Design` versão 7.0.14
+- `Microsoft.EntityFrameworkCore.Tools` versão 7.0.14
+- `Microsoft.EntityFrameworkCore.SqlServer` versão 7.0.14
+
+### Exemplo com Microsoft.Data.SqlClient no Visual Studio
+
+1. Vá em **Ferramentas > Gerenciador de Pacotes do NuGet > Gerenciar Pacotes do NuGet para a Solução…**.
+2. Na aba **Procurar**, busque por "SQL Client". O primeiro resultado será o `Microsoft.Data.SqlClient`. Marque o projeto **ScreenSound** e clique em **Instalar**. Aceite as licenças para concluir a instalação.
+
+### Configurando a Conexão
+
+Para fazer a conexão com o banco de dados:
+
+1. No Pesquisador de Objetos do SQL Server, clique com o botão direito sobre o banco de dados **ScreenSound** e selecione **Propriedades**.
+2. Copie a **Cadeia de Conexão** exibida.
+
+No seu projeto, crie uma variável privada chamada `connectionString` e atribua a ela as informações copiadas. Remova o valor padrão de `Connect Timeout` (30) para otimizar a execução.
+
+## Adicionar Migration
+
+Com os pacotes instalados, adicione a primeira migration ao projeto:
+
+1. Vá em **Ferramentas > Gerenciador de Pacotes do NuGet > Console do Gerenciador de Pacotes**.
+2. Execute o seguinte comando para adicionar a migration inicial:
+
+    ```bash
+    Add-Migration projetoInicial
+    ```
+
+As migrations são um recurso do Entity Framework que permite gerenciar a estrutura e as versões do banco de dados sem a necessidade de editar scripts SQL manualmente.
+
+## Adicionar o Pacote Proxies
+
+1. No Gerenciador de Soluções, clique com o botão direito em **ScreenSound** e selecione **Editar Arquivo do Projeto**.
+2. Adicione a seguinte referência no `<ItemGroup>`:
+
+    ```xml
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.14" />
+    ```
+
+Salve o arquivo para adicionar o pacote ao projeto.
+
+### Uso do Pacote Proxies: `UseLazyLoadingProxies()`
+
+Para usar o pacote Proxies:
+
+1. No Gerenciador de Soluções, abra a pasta **Banco** e edite o arquivo `ScreenSoundContext.cs`.
+2. No método `OnConfiguring()`, adicione `UseLazyLoadingProxies()` após `UseSqlServer()`:
+
+    ```csharp
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .UseSqlServer(connectionString)
+            .UseLazyLoadingProxies(); 
+    }
+    ```
+
+Salve o arquivo para habilitar o uso do pacote no projeto.
+
+Abaixo está uma descrição informal narrando os passos que executei.
+
 Primeiro passo é criar o banco de dados
 Para utilizarmos o SQL Server no projeto, é preciso que você tenha instalado o seu componente. Geralmente, este componente já é instalado junto com o Visual Studio quando você faz o processo padrão de instalação, mas você pode seguir o passo a passo abaixo para conferir se tudo está instalado corretamente:
 
